@@ -1,0 +1,32 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+ 
+public class Solution
+{
+    public static void main(String[] args)throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        int t=Integer.parseInt(br.readLine());
+        int a1,a2,count=0,count_val=0;
+        for(int j=0;j<t;j++) {
+            int n = Integer.parseInt(br.readLine());
+            String str[] = br.readLine().split(" ");
+             count = 0;
+            if (str.length == 1) {
+                System.out.println(0);
+                continue;
+            }
+           int curr=Integer.parseInt(str[n-1]);
+           for(int i=str.length-2;i>=0;i--)
+           {
+               if(Integer.parseInt(str[i])>curr)
+               {
+                   count+=1;
+               }
+               else
+               curr=Integer.parseInt(str[i]);
+           }
+           System.out.println(count);
+    }
+}
+}
