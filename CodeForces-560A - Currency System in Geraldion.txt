@@ -1,0 +1,27 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.*;
+import java.io.InputStreamReader;
+ 
+public class Solution
+{
+    public static void main(String[] args)throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        int t=Integer.parseInt(br.readLine());
+        String str[]=br.readLine().split(" ");
+        ArrayList<Integer> list=new ArrayList<>();
+        for(int i=0;i<str.length;i++)
+        {
+            list.add(Integer.parseInt(str[i]));
+        }
+        Collections.sort(list);
+        if(list.get(0)==1)
+        System.out.println(-1);
+        else
+        {
+            System.out.println(1);
+        }
+        
+       
+    }
+}
