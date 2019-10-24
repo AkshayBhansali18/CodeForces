@@ -1,0 +1,79 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+public class Stabilise
+{
+    public static void main(String[] args) throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        int n=Integer.parseInt(br.readLine());
+        String str1[]=br.readLine().split(" ");
+        String str2[]=br.readLine().split(" ");
+        int p1=Integer.parseInt(str1[0]);
+        int p2=Integer.parseInt(str2[0]);
+        ArrayList<Integer> c1=new ArrayList<>();
+        ArrayList<Integer> c1_orig=new ArrayList<>();
+        ArrayList<Integer> c2_orig=new ArrayList<>();
+        ArrayList<Integer> c2=new ArrayList<>();
+        for(int i=1;i<str1.length;i++)
+        {
+            c1.add(Integer.parseInt(str1[i]));
+        }
+        for(int i=1;i<str2.length;i++)
+        {
+            c2.add(Integer.parseInt(str2[i]));
+        }
+        c1_orig= (ArrayList<Integer>) c1.clone();
+        c2_orig= (ArrayList<Integer>) c2.clone();
+        int count=1;
+        if(c1.get(0)>c2.get(0))
+        {
+            c1.add(c2.get(0));
+            c1.add(c1.get(0));
+            c1.remove(0);
+            c2.remove(0);
+        }
+        else if(c2.get(0)>c1.get(0))
+        {
+            c2.add(c1.get(0));
+            c2.add(c2.get(0));
+            c2.remove(0);
+            c1.remove(0);
+        }
+        while((!c1.equals(c1_orig)||!c2.equals(c2_orig))&&(c1.size()>0&&c2.size()>0))
+        {
+            if(c1.get(0)>c2.get(0))
+            {
+                c1.add(c2.get(0));
+                c1.add(c1.get(0));
+                c1.remove(0);
+                c2.remove(0);
+            }
+            else if(c2.get(0)>c1.get(0))
+            {
+                c2.add(c1.get(0));
+                c2.add(c2.get(0));
+                c2.remove(0);
+                c1.remove(0);
+            }
+            count+=1;
+            if(count>1000)
+            {
+                System.out.println("-1");
+                return;
+            }
+
+        }
+        if(c1.size()==0)
+        {
+            System.out.println(count+" "+"2");
+        }
+        else if(c2.size()==0)
+        {
+            System.out.println(count+" "+"1");
+        }else {
+            System.out.println(-1);
+        }
+    }
+}
