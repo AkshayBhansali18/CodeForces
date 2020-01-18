@@ -1,0 +1,27 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+public class SolutionD {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+        for (int k = 0; k < t; k++) {
+            String s1[] = br.readLine().split(" ");
+            String s2[] = br.readLine().split(" ");
+            int n = Integer.parseInt(s1[0]);
+            int k1 = Integer.parseInt(s1[1]);
+            int d = Integer.parseInt(s1[2]);
+            int min=999;
+            for (int i = 0; i < s2.length-d+1; i++) {
+                Set<Integer> set=new HashSet<>();
+                for (int j = i; j <d+i; j++) {
+                    set.add(Integer.parseInt(s2[j]));
+                }
+                if(set.size()<min)
+                    min=set.size();
+            }
+            System.out.println(min);
+        }
+    }
+}
