@@ -1,0 +1,55 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+public class SolutionD
+{
+   static ArrayList<Double> list2=new ArrayList<>();
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        int n=Integer.parseInt(br.readLine());
+        String str[]=br.readLine().split(" ");
+        int vis[]=new int[str.length];
+        ArrayList<Double> list=new ArrayList<>();
+        for(int i=0;i<str.length;i++)
+        {
+            vis[i]=0;
+            list.add(Double.parseDouble(str[i]));
+        }
+        double start = 0;
+        for(int i=0;i<list.size();i++)
+        {
+            start=list.get(i);
+            list2.add(start);
+            vis[i]=1;
+          dfs(list,vis,start);
+            if(list2.size()==list.size())
+                break;
+            else
+            {
+                for(int j=0;j<vis.length;j++)
+                    vis[j]=0;
+                list2.removeAll(list2);
+            }
+        }
+        for(int i=0;i<list2.size();i++)
+            System.out.print(String.format("%.0f", list2.get(i))+" ");
+
+
+    }
+    public static void dfs(ArrayList<Double> list,int vis[],double src)
+    {
+        for(int i=0;i<list.size();i++)
+        {
+            if(vis[i]==0 && (list.get(i)==src/3 || list.get(i)==src*2))
+            {
+                vis[i]=1;
+                src=list.get(i);
+                list2.add(list.get(i));
+                dfs(list,vis,src);
+            }
+        }
+    }
+}
